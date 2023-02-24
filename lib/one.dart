@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'two.dart';
 import 'dart:math';
 import 'package:rflutter_alert/rflutter_alert.dart';
-class one extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
  double height = 150;
  bool cheker = true ;
  int age = 19 ;
  double weight = 0 ;
  late double bmi_result;
+ String theGender = 'male' ;
+
+  HomeScreen({super.key});
   @override
-  State<one> createState() => _oneState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _oneState extends State<one> {
+class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class _oneState extends State<one> {
           centerTitle: true,
           title:
           Row(
-            children: [
-              Icon(Icons.ac_unit, size: 45,),
+            children: const [
+            Icon(Icons.ac_unit, size: 45,),
               SizedBox(width: 6,),
               Text('BMI CALCULATOR',
                 style: TextStyle(
@@ -36,6 +39,7 @@ class _oneState extends State<one> {
           ),
         ),
         body: Column(
+
           children: [
             Expanded(
               flex: 3,
@@ -44,15 +48,7 @@ class _oneState extends State<one> {
                 child: Row(
                   children: [
                     Expanded(child: Container(
-                      child: GestureDetector(
-                          onTap: (){
-                            //girl
-                            widget.cheker = true;
-                            setState(() {});
-                          },
-                          child:
-                    Image.asset('asset/FB_IMG_1589205099796.jpg',fit: BoxFit.cover))
-                      ,height: 250,
+                      height: 250,
                       width: 90,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -61,18 +57,21 @@ class _oneState extends State<one> {
                             width: 8,
                           )
                       ),
+                      child: GestureDetector(
+                          onTap: (){
+                            //girl
+                            widget.cheker = true;
+                            widget.theGender= 'Female';
+                            setState(() {});
+                          },
+                          child:
+                    Image.asset('asset/FB_IMG_1589205099796.jpg',fit: BoxFit.cover)),
                     )
                     ),
-                    SizedBox(width: 35,),
-                    Expanded(child:Container(child: GestureDetector(
-                      onTap: (){
-                        //boy
-                        widget.cheker = false;
-                        setState(() {});
-                      },
-                      child: Image.asset('asset/FB_IMG_1589205103563.jpg',fit: BoxFit.cover,
-                        ),
-                    ), height: 250,width: 90,
+                   const SizedBox(width: 35,),
+                    Expanded(
+                      child: Container(
+                        height: 250,width: 90,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
@@ -80,11 +79,22 @@ class _oneState extends State<one> {
                             width: 8,
                           )
                       ),
+                        child: GestureDetector(
+                      onTap: (){
+                        //boy
+                        widget.cheker = false;
+                        widget.theGender = 'Male';
+                        setState(() {});
+                      },
+                      child: Image.asset('asset/FB_IMG_1589205103563.jpg',fit: BoxFit.cover,
+                        ),
+                    ),
                     ),
                     )],
                 ),
               ),
             ),
+
             Expanded(
               flex: 2,
               child: Padding(
@@ -102,21 +112,21 @@ class _oneState extends State<one> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 8,),
-                      Text('Height',style: TextStyle(
+                     const SizedBox(height: 8,),
+                      const Text('Height',style: TextStyle(
                     fontSize: 29,
                     color: Colors.purpleAccent,)),
-                      SizedBox(height: 5,),
+                       const SizedBox(height: 5,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           Text('${widget.height.toInt()}',style: TextStyle(
+                           Text('${widget.height.toInt()}',style: const TextStyle(
                               fontSize: 26,
                               color: Colors.purpleAccent,
 
                             ),),
-                        SizedBox(width: 2,),
-                        Text('cm',style: TextStyle(
+                       const  SizedBox(width: 2,),
+                        const Text('cm',style: TextStyle(
                               fontSize: 19,
                               color: Colors.purpleAccent),
 
@@ -142,6 +152,7 @@ class _oneState extends State<one> {
                 ),
               ),
             ),
+
             Expanded(
               flex: 3,
               child: Padding(
@@ -165,12 +176,12 @@ class _oneState extends State<one> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //SizedBox(height: 10,),
-                            Text('WEIGHT', style: TextStyle(
+                         const   Text('WEIGHT', style: TextStyle(
                             color: Colors.purpleAccent,
                             fontSize: 30
                           ),),
                             //SizedBox(height: 10,),
-                            Text('${widget.weight.toInt()}', style: TextStyle(
+                            Text('${widget.weight.toInt()}', style: const TextStyle(
                                 color: Colors.purpleAccent,
                                 fontSize: 30)),
                             //SizedBox(height: 10,),
@@ -183,7 +194,7 @@ class _oneState extends State<one> {
                                     setState(() {
                                     });
                                   }
-                                  ,child: Icon(Icons.arrow_back_ios,
+                                  ,child: const Icon(Icons.arrow_back_ios,
                                       color: Colors.purpleAccent),
                                 ),
                                 GestureDetector(
@@ -193,7 +204,7 @@ class _oneState extends State<one> {
 
                                     });
                                   }
-                                  ,child: Icon(Icons.arrow_forward_ios,
+                                  ,child: const Icon(Icons.arrow_forward_ios,
                                   color: Colors.purpleAccent),
                                 ),
                               ],
@@ -202,19 +213,26 @@ class _oneState extends State<one> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 25,),
+                  const SizedBox(width: 25,),
                     Expanded(
                       child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                                color: Colors.pink.shade100,
+                                width: 8
+                            )
+                        ),
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                       //SizedBox(height: 10,),
-                      Text('AGE', style: TextStyle(
+                      const Text('AGE', style: TextStyle(
                       color: Colors.purpleAccent,
                       fontSize: 30
                       ),),
                       //SizedBox(height: 10,),
-                      Text('${widget.age}', style: TextStyle(
+                      Text('${widget.age}', style: const  TextStyle(
                       color: Colors.purpleAccent,
                       fontSize: 30)),
                       //SizedBox(height: 10,),
@@ -233,12 +251,12 @@ class _oneState extends State<one> {
                             buttons: [
                               DialogButton(
                             color: Colors.pink.shade100,
-                                child: Text(
+                                onPressed: () => Navigator.pop(context),
+                                width: 125,
+                                child: const Text(
                                   "COOL",
                                   style: TextStyle(color: Colors.white, fontSize: 25),
                                 ),
-                                onPressed: () => Navigator.pop(context),
-                                width: 125,
                               )
                             ],
                           ).show();
@@ -248,7 +266,7 @@ class _oneState extends State<one> {
                       setState(() {
                       });
                       }
-    ,child: Icon(Icons.arrow_back_ios,
+    ,child: const  Icon(Icons.arrow_back_ios,
     color: Colors.purpleAccent),
     ),
     GestureDetector(
@@ -258,34 +276,27 @@ class _oneState extends State<one> {
 
     });
     }
-    ,child: Icon(Icons.arrow_forward_ios,
+    ,child: const Icon(Icons.arrow_forward_ios,
     color: Colors.purpleAccent),
     ),
     ],
     )
     ],
     ),
-                      //  height: 220,
-                       // width: 80,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(
-                                color: Colors.pink.shade100,
-                                width: 8
-                            )
-                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
+
             Expanded(flex: 1,
                 child: GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
                       return
-                        two(gender_cheker: widget.cheker,
+                        ResultScreen(
+                          gender: widget.theGender,
                       age: widget.age,
                       height: widget.height,
                       bmiResult: widget.bmi_result ,
@@ -307,7 +318,7 @@ class _oneState extends State<one> {
                             width: 8
                           )
                         ),
-                        child: Text('CALCULATE',
+                        child: const Text('CALCULATE',
                         style: TextStyle(
                           color: Colors.purpleAccent,
                           fontSize: 40
